@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EpeopleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrators">
+    <Key>
+      <PropertyRef Name="AdministratorId" />
+    </Key>
+    <Property Name="AdministratorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdministratorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdministratorPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdministratorPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleId" />
+    </Key>
+    <Property Name="ArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleDate" Type="DateTime" Precision="3" />
+    <Property Name="ArticleTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ArticlePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="ParentId" />
+    </Key>
+    <Property Name="ParentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Performance">
+    <Key>
+      <PropertyRef Name="PerformanceId" />
+    </Key>
+    <Property Name="PerformanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PerformanceMX">
+    <Key>
+      <PropertyRef Name="PerformanceMXId" />
+    </Key>
+    <Property Name="PerformanceMXId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerId" Type="Int32" />
+    <Property Name="PerformanceId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="PictureId" />
+    </Key>
+    <Property Name="PictureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PictureTypeId" Type="Int32" />
+    <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PictureType">
+    <Key>
+      <PropertyRef Name="PictureTypeId" />
+    </Key>
+    <Property Name="PictureTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PictureId" Type="Int32" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerSex" Type="Int32" />
+    <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
+    <Property Name="PlayerIdCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerVotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="SchoolId" />
+    </Key>
+    <Property Name="SchoolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Voter">
+    <Key>
+      <PropertyRef Name="VoterId" />
+    </Key>
+    <Property Name="VoterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VoterVotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VoterMX">
+    <Key>
+      <PropertyRef Name="VoterMXId" />
+    </Key>
+    <Property Name="VoterMXId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoterMXTime" Type="DateTime" Precision="3" />
+    <Property Name="PlayerId" Type="Int32" />
+    <Property Name="VoterId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="EpeopleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrators" EntityType="Self.Administrators" />
+    <EntitySet Name="Article" EntityType="Self.Article" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" />
+    <EntitySet Name="Performance" EntityType="Self.Performance" />
+    <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" />
+    <EntitySet Name="PictureType" EntityType="Self.PictureType" />
+    <EntitySet Name="Player" EntityType="Self.Player" />
+    <EntitySet Name="School" EntityType="Self.School" />
+    <EntitySet Name="Voter" EntityType="Self.Voter" />
+    <EntitySet Name="VoterMX" EntityType="Self.VoterMX" />
+  </EntityContainer>
+</Schema>

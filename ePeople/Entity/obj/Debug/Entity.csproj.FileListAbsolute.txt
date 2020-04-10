@@ -1,0 +1,13 @@
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\Entity.dll.config
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\Entity.dll
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\Entity.pdb
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\EntityFramework.dll
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\EntityFramework.xml
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\obj\Debug\Entity.csprojAssemblyReference.cache
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\obj\Debug\Entity.csproj.CopyComplete
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\obj\Debug\Entity.dll
+C:\Users\黄京超\Desktop\E人帮\源码\E帮人后端接口\ePeople\Entity\obj\Debug\Entity.pdb

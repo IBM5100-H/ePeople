@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePeople", "ePeople\ePeople.csproj", "{8E19C913-2C9E-403A-BEB5-20C2F70B266E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{ADAEEC7E-FDB6-4B01-9F5D-DD995160FF4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E19C913-2C9E-403A-BEB5-20C2F70B266E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E19C913-2C9E-403A-BEB5-20C2F70B266E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E19C913-2C9E-403A-BEB5-20C2F70B266E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E19C913-2C9E-403A-BEB5-20C2F70B266E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADAEEC7E-FDB6-4B01-9F5D-DD995160FF4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADAEEC7E-FDB6-4B01-9F5D-DD995160FF4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADAEEC7E-FDB6-4B01-9F5D-DD995160FF4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADAEEC7E-FDB6-4B01-9F5D-DD995160FF4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5747C468-24A5-43AA-8535-9D8DBB683329}
+	EndGlobalSection
+EndGlobal

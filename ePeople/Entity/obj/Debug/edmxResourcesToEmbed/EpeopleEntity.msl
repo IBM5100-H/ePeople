@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EpeopleModelStoreContainer" CdmEntityContainer="EpeopleEntities">
+    <EntitySetMapping Name="Administrators">
+      <EntityTypeMapping TypeName="EpeopleModel.Administrators">
+        <MappingFragment StoreEntitySet="Administrators">
+          <ScalarProperty Name="AdministratorId" ColumnName="AdministratorId" />
+          <ScalarProperty Name="AdministratorName" ColumnName="AdministratorName" />
+          <ScalarProperty Name="AdministratorPwd" ColumnName="AdministratorPwd" />
+          <ScalarProperty Name="AdministratorPhone" ColumnName="AdministratorPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="EpeopleModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="ArticleDate" ColumnName="ArticleDate" />
+          <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
+          <ScalarProperty Name="ArticlePath" ColumnName="ArticlePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parent">
+      <EntityTypeMapping TypeName="EpeopleModel.Parent">
+        <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+          <ScalarProperty Name="ParentEmail" ColumnName="ParentEmail" />
+          <ScalarProperty Name="ParentPhone" ColumnName="ParentPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Performance">
+      <EntityTypeMapping TypeName="EpeopleModel.Performance">
+        <MappingFragment StoreEntitySet="Performance">
+          <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
+          <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerformanceMX">
+      <EntityTypeMapping TypeName="EpeopleModel.PerformanceMX">
+        <MappingFragment StoreEntitySet="PerformanceMX">
+          <ScalarProperty Name="PerformanceMXId" ColumnName="PerformanceMXId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Picture">
+      <EntityTypeMapping TypeName="EpeopleModel.Picture">
+        <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+          <ScalarProperty Name="PictureTypeId" ColumnName="PictureTypeId" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PictureType">
+      <EntityTypeMapping TypeName="EpeopleModel.PictureType">
+        <MappingFragment StoreEntitySet="PictureType">
+          <ScalarProperty Name="PictureTypeId" ColumnName="PictureTypeId" />
+          <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Player">
+      <EntityTypeMapping TypeName="EpeopleModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
+          <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
+          <ScalarProperty Name="PlayerIdCard" ColumnName="PlayerIdCard" />
+          <ScalarProperty Name="PlayerPrize" ColumnName="PlayerPrize" />
+          <ScalarProperty Name="PlayerDeclaration" ColumnName="PlayerDeclaration" />
+          <ScalarProperty Name="PlayerVotes" ColumnName="PlayerVotes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="School">
+      <EntityTypeMapping TypeName="EpeopleModel.School">
+        <MappingFragment StoreEntitySet="School">
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voter">
+      <EntityTypeMapping TypeName="EpeopleModel.Voter">
+        <MappingFragment StoreEntitySet="Voter">
+          <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+          <ScalarProperty Name="VoterName" ColumnName="VoterName" />
+          <ScalarProperty Name="VoterVotes" ColumnName="VoterVotes" />
+          <ScalarProperty Name="VoterOpenId" ColumnName="VoterOpenId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoterMX">
+      <EntityTypeMapping TypeName="EpeopleModel.VoterMX">
+        <MappingFragment StoreEntitySet="VoterMX">
+          <ScalarProperty Name="VoterMXId" ColumnName="VoterMXId" />
+          <ScalarProperty Name="VoterMXTime" ColumnName="VoterMXTime" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

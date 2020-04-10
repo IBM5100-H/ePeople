@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EpeopleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Administrators">
+    <Key>
+      <PropertyRef Name="AdministratorId" />
+    </Key>
+    <Property Name="AdministratorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdministratorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdministratorPwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdministratorPhone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleId" />
+    </Key>
+    <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArticleDate" Type="datetime" />
+    <Property Name="ArticleTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ArticlePath" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="ParentId" />
+    </Key>
+    <Property Name="ParentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentPhone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Performance">
+    <Key>
+      <PropertyRef Name="PerformanceId" />
+    </Key>
+    <Property Name="PerformanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PerformanceName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PerformanceMX">
+    <Key>
+      <PropertyRef Name="PerformanceMXId" />
+    </Key>
+    <Property Name="PerformanceMXId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="int" />
+    <Property Name="PerformanceId" Type="int" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="PictureId" />
+    </Key>
+    <Property Name="PictureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PictureTypeId" Type="int" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PictureType">
+    <Key>
+      <PropertyRef Name="PictureTypeId" />
+    </Key>
+    <Property Name="PictureTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PictureName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PictureId" Type="int" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerSex" Type="int" />
+    <Property Name="PlayerBirthday" Type="datetime" />
+    <Property Name="PlayerIdCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerPrize" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerDeclaration" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerVotes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="SchoolId" />
+    </Key>
+    <Property Name="SchoolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Voter">
+    <Key>
+      <PropertyRef Name="VoterId" />
+    </Key>
+    <Property Name="VoterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoterName" Type="nvarchar" MaxLength="50" />
+    <Property Name="VoterVotes" Type="nvarchar" MaxLength="50" />
+    <Property Name="VoterOpenId" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VoterMX">
+    <Key>
+      <PropertyRef Name="VoterMXId" />
+    </Key>
+    <Property Name="VoterMXId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoterMXTime" Type="datetime" />
+    <Property Name="PlayerId" Type="int" />
+    <Property Name="VoterId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="EpeopleModelStoreContainer">
+    <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Performance" EntityType="Self.Performance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PictureType" EntityType="Self.PictureType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Voter" EntityType="Self.Voter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VoterMX" EntityType="Self.VoterMX" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
