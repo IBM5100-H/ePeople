@@ -24,6 +24,7 @@
     <EntitySetMapping Name="Parent">
       <EntityTypeMapping TypeName="EpeopleModel.Parent">
         <MappingFragment StoreEntitySet="Parent">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
           <ScalarProperty Name="ParentId" ColumnName="ParentId" />
           <ScalarProperty Name="ParentName" ColumnName="ParentName" />
           <ScalarProperty Name="ParentEmail" ColumnName="ParentEmail" />
@@ -31,26 +32,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Performance">
-      <EntityTypeMapping TypeName="EpeopleModel.Performance">
-        <MappingFragment StoreEntitySet="Performance">
-          <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
-          <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PerformanceMX">
       <EntityTypeMapping TypeName="EpeopleModel.PerformanceMX">
         <MappingFragment StoreEntitySet="PerformanceMX">
+          <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
           <ScalarProperty Name="PerformanceMXId" ColumnName="PerformanceMXId" />
           <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-          <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Picture">
       <EntityTypeMapping TypeName="EpeopleModel.Picture">
         <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
           <ScalarProperty Name="PictureId" ColumnName="PictureId" />
           <ScalarProperty Name="PictureTypeId" ColumnName="PictureTypeId" />
           <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -69,9 +63,7 @@
       <EntityTypeMapping TypeName="EpeopleModel.Player">
         <MappingFragment StoreEntitySet="Player">
           <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
           <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
           <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
           <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
           <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
@@ -107,6 +99,21 @@
           <ScalarProperty Name="VoterMXTime" ColumnName="VoterMXTime" />
           <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
           <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_certificate">
+      <EntityTypeMapping TypeName="EpeopleModel.V_certificate">
+        <MappingFragment StoreEntitySet="V_certificate">
+          <ScalarProperty Name="V_ID" ColumnName="V_ID" />
+          <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="PlayerDeclaration" ColumnName="PlayerDeclaration" />
+          <ScalarProperty Name="PlayerPrize" ColumnName="PlayerPrize" />
+          <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
+          <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

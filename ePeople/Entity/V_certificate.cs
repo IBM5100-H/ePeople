@@ -12,9 +12,16 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Performance
+    public partial class V_certificate
     {
-        public int PerformanceId { get; set; }
+        public int PlayerId { get; set; }
+        public string PlayerName { get; set; }
+        public Nullable<int> PlayerSex { get; set; }
+        public Nullable<System.DateTime> PlayerBirthday { get; set; }
+        public string PlayerPrize { get; set; }
+        public string PlayerDeclaration { get; set; }
+        public string SchoolName { get; set; }
         public string PerformanceName { get; set; }
+        public long V_ID { get; set; }
     }
 }

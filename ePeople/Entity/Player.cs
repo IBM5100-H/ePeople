@@ -15,9 +15,7 @@ namespace Entity
     public partial class Player
     {
         public int PlayerId { get; set; }
-        public Nullable<int> PictureId { get; set; }
         public Nullable<int> SchoolId { get; set; }
-        public Nullable<int> ParentId { get; set; }
         public string PlayerName { get; set; }
         public Nullable<int> PlayerSex { get; set; }
         public Nullable<System.DateTime> PlayerBirthday { get; set; }

@@ -17,5 +17,6 @@ namespace Entity
         public int PictureId { get; set; }
         public Nullable<int> PictureTypeId { get; set; }
         public string PicturePath { get; set; }
+        public Nullable<int> PlayerId { get; set; }
     }
 }

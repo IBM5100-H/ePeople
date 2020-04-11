@@ -28,7 +28,6 @@ namespace Entity
         public virtual DbSet<Administrators> Administrators { get; set; }
         public virtual DbSet<Article> Article { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
-        public virtual DbSet<Performance> Performance { get; set; }
         public virtual DbSet<PerformanceMX> PerformanceMX { get; set; }
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<PictureType> PictureType { get; set; }
@@ -36,5 +35,6 @@ namespace Entity
         public virtual DbSet<School> School { get; set; }
         public virtual DbSet<Voter> Voter { get; set; }
         public virtual DbSet<VoterMX> VoterMX { get; set; }
+        public virtual DbSet<V_certificate> V_certificate { get; set; }
     }
 }

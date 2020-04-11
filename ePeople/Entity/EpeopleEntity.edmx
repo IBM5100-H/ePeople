@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EpeopleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EpeopleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrators">
           <Key>
             <PropertyRef Name="AdministratorId" />
@@ -31,13 +31,7 @@
           <Property Name="ParentName" Type="nvarchar" MaxLength="50" />
           <Property Name="ParentEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="ParentPhone" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Performance">
-          <Key>
-            <PropertyRef Name="PerformanceId" />
-          </Key>
-          <Property Name="PerformanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PerformanceName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlayerId" Type="int" />
         </EntityType>
         <EntityType Name="PerformanceMX">
           <Key>
@@ -45,7 +39,7 @@
           </Key>
           <Property Name="PerformanceMXId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlayerId" Type="int" />
-          <Property Name="PerformanceId" Type="int" />
+          <Property Name="PerformanceName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -54,6 +48,7 @@
           <Property Name="PictureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PictureTypeId" Type="int" />
           <Property Name="PicturePath" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlayerId" Type="int" />
         </EntityType>
         <EntityType Name="PictureType">
           <Key>
@@ -67,9 +62,7 @@
             <PropertyRef Name="PlayerId" />
           </Key>
           <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PictureId" Type="int" />
           <Property Name="SchoolId" Type="int" />
-          <Property Name="ParentId" Type="int" />
           <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
           <Property Name="PlayerSex" Type="int" />
           <Property Name="PlayerBirthday" Type="datetime" />
@@ -103,11 +96,27 @@
           <Property Name="PlayerId" Type="int" />
           <Property Name="VoterId" Type="int" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Epeople.dbo.V_certificate”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_certificate">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+            <PropertyRef Name="V_ID" />
+          </Key>
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlayerSex" Type="int" />
+          <Property Name="PlayerBirthday" Type="datetime" />
+          <Property Name="PlayerPrize" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlayerDeclaration" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PerformanceName" Type="varchar" MaxLength="50" />
+          <Property Name="V_ID" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="EpeopleModelStoreContainer">
           <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Performance" EntityType="Self.Performance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureType" EntityType="Self.PictureType" Schema="dbo" store:Type="Tables" />
@@ -115,9 +124,21 @@
           <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voter" EntityType="Self.Voter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VoterMX" EntityType="Self.VoterMX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_certificate" EntityType="Self.V_certificate" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_certificate].[PlayerId] AS [PlayerId], 
+    [V_certificate].[PlayerName] AS [PlayerName], 
+    [V_certificate].[PlayerSex] AS [PlayerSex], 
+    [V_certificate].[PlayerBirthday] AS [PlayerBirthday], 
+    [V_certificate].[PlayerPrize] AS [PlayerPrize], 
+    [V_certificate].[PlayerDeclaration] AS [PlayerDeclaration], 
+    [V_certificate].[SchoolName] AS [SchoolName], 
+    [V_certificate].[PerformanceName] AS [PerformanceName], 
+    [V_certificate].[V_ID] AS [V_ID]
+    FROM [dbo].[V_certificate] AS [V_certificate]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EpeopleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -147,13 +168,7 @@
           <Property Name="ParentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParentPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Performance">
-          <Key>
-            <PropertyRef Name="PerformanceId" />
-          </Key>
-          <Property Name="PerformanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerId" Type="Int32" />
         </EntityType>
         <EntityType Name="PerformanceMX">
           <Key>
@@ -161,7 +176,7 @@
           </Key>
           <Property Name="PerformanceMXId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PlayerId" Type="Int32" />
-          <Property Name="PerformanceId" Type="Int32" />
+          <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -170,6 +185,7 @@
           <Property Name="PictureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PictureTypeId" Type="Int32" />
           <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerId" Type="Int32" />
         </EntityType>
         <EntityType Name="PictureType">
           <Key>
@@ -183,9 +199,7 @@
             <PropertyRef Name="PlayerId" />
           </Key>
           <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PictureId" Type="Int32" />
           <Property Name="SchoolId" Type="Int32" />
-          <Property Name="ParentId" Type="Int32" />
           <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PlayerSex" Type="Int32" />
           <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
@@ -223,7 +237,6 @@
           <EntitySet Name="Administrators" EntityType="Self.Administrators" />
           <EntitySet Name="Article" EntityType="Self.Article" />
           <EntitySet Name="Parent" EntityType="Self.Parent" />
-          <EntitySet Name="Performance" EntityType="Self.Performance" />
           <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" />
           <EntitySet Name="Picture" EntityType="Self.Picture" />
           <EntitySet Name="PictureType" EntityType="Self.PictureType" />
@@ -231,7 +244,23 @@
           <EntitySet Name="School" EntityType="Self.School" />
           <EntitySet Name="Voter" EntityType="Self.Voter" />
           <EntitySet Name="VoterMX" EntityType="Self.VoterMX" />
+          <EntitySet Name="V_certificate" EntityType="EpeopleModel.V_certificate" />
         </EntityContainer>
+        <EntityType Name="V_certificate">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+            <PropertyRef Name="V_ID" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerSex" Type="Int32" />
+          <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
+          <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="V_ID" Type="Int64" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -261,6 +290,7 @@
           <EntitySetMapping Name="Parent">
             <EntityTypeMapping TypeName="EpeopleModel.Parent">
               <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="ParentName" ColumnName="ParentName" />
                 <ScalarProperty Name="ParentEmail" ColumnName="ParentEmail" />
@@ -268,26 +298,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Performance">
-            <EntityTypeMapping TypeName="EpeopleModel.Performance">
-              <MappingFragment StoreEntitySet="Performance">
-                <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
-                <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PerformanceMX">
             <EntityTypeMapping TypeName="EpeopleModel.PerformanceMX">
               <MappingFragment StoreEntitySet="PerformanceMX">
+                <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
                 <ScalarProperty Name="PerformanceMXId" ColumnName="PerformanceMXId" />
                 <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-                <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Picture">
             <EntityTypeMapping TypeName="EpeopleModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
                 <ScalarProperty Name="PictureId" ColumnName="PictureId" />
                 <ScalarProperty Name="PictureTypeId" ColumnName="PictureTypeId" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -306,9 +329,7 @@
             <EntityTypeMapping TypeName="EpeopleModel.Player">
               <MappingFragment StoreEntitySet="Player">
                 <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
                 <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
                 <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
@@ -344,6 +365,21 @@
                 <ScalarProperty Name="VoterMXTime" ColumnName="VoterMXTime" />
                 <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
                 <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_certificate">
+            <EntityTypeMapping TypeName="EpeopleModel.V_certificate">
+              <MappingFragment StoreEntitySet="V_certificate">
+                <ScalarProperty Name="V_ID" ColumnName="V_ID" />
+                <ScalarProperty Name="PerformanceName" ColumnName="PerformanceName" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="PlayerDeclaration" ColumnName="PlayerDeclaration" />
+                <ScalarProperty Name="PlayerPrize" ColumnName="PlayerPrize" />
+                <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
+                <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,13 +26,7 @@
     <Property Name="ParentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ParentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ParentPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Performance">
-    <Key>
-      <PropertyRef Name="PerformanceId" />
-    </Key>
-    <Property Name="PerformanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerId" Type="Int32" />
   </EntityType>
   <EntityType Name="PerformanceMX">
     <Key>
@@ -40,7 +34,7 @@
     </Key>
     <Property Name="PerformanceMXId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PlayerId" Type="Int32" />
-    <Property Name="PerformanceId" Type="Int32" />
+    <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -49,6 +43,7 @@
     <Property Name="PictureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PictureTypeId" Type="Int32" />
     <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerId" Type="Int32" />
   </EntityType>
   <EntityType Name="PictureType">
     <Key>
@@ -62,9 +57,7 @@
       <PropertyRef Name="PlayerId" />
     </Key>
     <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PictureId" Type="Int32" />
     <Property Name="SchoolId" Type="Int32" />
-    <Property Name="ParentId" Type="Int32" />
     <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PlayerSex" Type="Int32" />
     <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
@@ -102,7 +95,6 @@
     <EntitySet Name="Administrators" EntityType="Self.Administrators" />
     <EntitySet Name="Article" EntityType="Self.Article" />
     <EntitySet Name="Parent" EntityType="Self.Parent" />
-    <EntitySet Name="Performance" EntityType="Self.Performance" />
     <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" />
     <EntitySet Name="Picture" EntityType="Self.Picture" />
     <EntitySet Name="PictureType" EntityType="Self.PictureType" />
@@ -110,5 +102,21 @@
     <EntitySet Name="School" EntityType="Self.School" />
     <EntitySet Name="Voter" EntityType="Self.Voter" />
     <EntitySet Name="VoterMX" EntityType="Self.VoterMX" />
+    <EntitySet Name="V_certificate" EntityType="EpeopleModel.V_certificate" />
   </EntityContainer>
+  <EntityType Name="V_certificate">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+      <PropertyRef Name="V_ID" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerSex" Type="Int32" />
+    <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
+    <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="V_ID" Type="Int64" Nullable="false" />
+  </EntityType>
 </Schema>

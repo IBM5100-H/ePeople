@@ -26,13 +26,7 @@
     <Property Name="ParentName" Type="nvarchar" MaxLength="50" />
     <Property Name="ParentEmail" Type="nvarchar" MaxLength="50" />
     <Property Name="ParentPhone" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Performance">
-    <Key>
-      <PropertyRef Name="PerformanceId" />
-    </Key>
-    <Property Name="PerformanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PerformanceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerId" Type="int" />
   </EntityType>
   <EntityType Name="PerformanceMX">
     <Key>
@@ -40,7 +34,7 @@
     </Key>
     <Property Name="PerformanceMXId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PlayerId" Type="int" />
-    <Property Name="PerformanceId" Type="int" />
+    <Property Name="PerformanceName" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -49,6 +43,7 @@
     <Property Name="PictureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PictureTypeId" Type="int" />
     <Property Name="PicturePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerId" Type="int" />
   </EntityType>
   <EntityType Name="PictureType">
     <Key>
@@ -62,9 +57,7 @@
       <PropertyRef Name="PlayerId" />
     </Key>
     <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PictureId" Type="int" />
     <Property Name="SchoolId" Type="int" />
-    <Property Name="ParentId" Type="int" />
     <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
     <Property Name="PlayerSex" Type="int" />
     <Property Name="PlayerBirthday" Type="datetime" />
@@ -98,11 +91,27 @@
     <Property Name="PlayerId" Type="int" />
     <Property Name="VoterId" Type="int" />
   </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Epeople.dbo.V_certificate”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="V_certificate">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+      <PropertyRef Name="V_ID" />
+    </Key>
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerSex" Type="int" />
+    <Property Name="PlayerBirthday" Type="datetime" />
+    <Property Name="PlayerPrize" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerDeclaration" Type="nvarchar" MaxLength="50" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PerformanceName" Type="varchar" MaxLength="50" />
+    <Property Name="V_ID" Type="bigint" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="EpeopleModelStoreContainer">
     <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Performance" EntityType="Self.Performance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PictureType" EntityType="Self.PictureType" Schema="dbo" store:Type="Tables" />
@@ -110,5 +119,18 @@
     <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Voter" EntityType="Self.Voter" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VoterMX" EntityType="Self.VoterMX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="V_certificate" EntityType="Self.V_certificate" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_certificate].[PlayerId] AS [PlayerId], 
+    [V_certificate].[PlayerName] AS [PlayerName], 
+    [V_certificate].[PlayerSex] AS [PlayerSex], 
+    [V_certificate].[PlayerBirthday] AS [PlayerBirthday], 
+    [V_certificate].[PlayerPrize] AS [PlayerPrize], 
+    [V_certificate].[PlayerDeclaration] AS [PlayerDeclaration], 
+    [V_certificate].[SchoolName] AS [SchoolName], 
+    [V_certificate].[PerformanceName] AS [PerformanceName], 
+    [V_certificate].[V_ID] AS [V_ID]
+    FROM [dbo].[V_certificate] AS [V_certificate]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

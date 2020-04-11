@@ -16,6 +16,6 @@ namespace Entity
     {
         public int PerformanceMXId { get; set; }
         public Nullable<int> PlayerId { get; set; }
-        public Nullable<int> PerformanceId { get; set; }
+        public string PerformanceName { get; set; }
     }
 }

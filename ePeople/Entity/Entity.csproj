@@ -74,9 +74,6 @@
     <Compile Include="Parent.cs">
       <DependentUpon>EpeopleEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Performance.cs">
-      <DependentUpon>EpeopleEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="PerformanceMX.cs">
       <DependentUpon>EpeopleEntity.tt</DependentUpon>
     </Compile>
@@ -93,10 +90,14 @@
     <Compile Include="School.cs">
       <DependentUpon>EpeopleEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SignUpMV.cs" />
     <Compile Include="Voter.cs">
       <DependentUpon>EpeopleEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="VoterMX.cs">
+      <DependentUpon>EpeopleEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_certificate.cs">
       <DependentUpon>EpeopleEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -18,5 +18,6 @@ namespace Entity
         public string ParentName { get; set; }
         public string ParentEmail { get; set; }
         public string ParentPhone { get; set; }
+        public Nullable<int> PlayerId { get; set; }
     }
 }
