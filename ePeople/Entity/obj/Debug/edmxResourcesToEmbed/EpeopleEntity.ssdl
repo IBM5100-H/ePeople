@@ -64,7 +64,7 @@
     <Property Name="PlayerIdCard" Type="nvarchar" MaxLength="50" />
     <Property Name="PlayerPrize" Type="nvarchar" MaxLength="50" />
     <Property Name="PlayerDeclaration" Type="nvarchar" MaxLength="50" />
-    <Property Name="PlayerVotes" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerVotes" Type="int" />
   </EntityType>
   <EntityType Name="School">
     <Key>
@@ -79,7 +79,7 @@
     </Key>
     <Property Name="VoterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="VoterName" Type="nvarchar" MaxLength="50" />
-    <Property Name="VoterVotes" Type="nvarchar" MaxLength="50" />
+    <Property Name="VoterVotes" Type="int" />
     <Property Name="VoterOpenId" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="VoterMX">

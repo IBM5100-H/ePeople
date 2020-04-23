@@ -69,7 +69,7 @@
           <Property Name="PlayerIdCard" Type="nvarchar" MaxLength="50" />
           <Property Name="PlayerPrize" Type="nvarchar" MaxLength="50" />
           <Property Name="PlayerDeclaration" Type="nvarchar" MaxLength="50" />
-          <Property Name="PlayerVotes" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlayerVotes" Type="int" />
         </EntityType>
         <EntityType Name="School">
           <Key>
@@ -84,7 +84,7 @@
           </Key>
           <Property Name="VoterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VoterName" Type="nvarchar" MaxLength="50" />
-          <Property Name="VoterVotes" Type="nvarchar" MaxLength="50" />
+          <Property Name="VoterVotes" Type="int" />
           <Property Name="VoterOpenId" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VoterMX">
@@ -194,35 +194,12 @@
           <Property Name="PictureTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Player">
-          <Key>
-            <PropertyRef Name="PlayerId" />
-          </Key>
-          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SchoolId" Type="Int32" />
-          <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PlayerSex" Type="Int32" />
-          <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
-          <Property Name="PlayerIdCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PlayerVotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="School">
           <Key>
             <PropertyRef Name="SchoolId" />
           </Key>
           <Property Name="SchoolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Voter">
-          <Key>
-            <PropertyRef Name="VoterId" />
-          </Key>
-          <Property Name="VoterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VoterVotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="VoterMX">
           <Key>
@@ -240,11 +217,11 @@
           <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" />
           <EntitySet Name="Picture" EntityType="Self.Picture" />
           <EntitySet Name="PictureType" EntityType="Self.PictureType" />
-          <EntitySet Name="Player" EntityType="Self.Player" />
           <EntitySet Name="School" EntityType="Self.School" />
-          <EntitySet Name="Voter" EntityType="Self.Voter" />
           <EntitySet Name="VoterMX" EntityType="Self.VoterMX" />
           <EntitySet Name="V_certificate" EntityType="EpeopleModel.V_certificate" />
+          <EntitySet Name="Player" EntityType="EpeopleModel.Player" />
+          <EntitySet Name="Voter" EntityType="EpeopleModel.Voter" />
         </EntityContainer>
         <EntityType Name="V_certificate">
           <Key>
@@ -260,6 +237,29 @@
           <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="V_ID" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerSex" Type="Int32" />
+          <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
+          <Property Name="PlayerIdCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerVotes" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Voter">
+          <Key>
+            <PropertyRef Name="VoterId" />
+          </Key>
+          <Property Name="VoterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VoterVotes" Type="Int32" />
+          <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -325,36 +325,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Player">
-            <EntityTypeMapping TypeName="EpeopleModel.Player">
-              <MappingFragment StoreEntitySet="Player">
-                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
-                <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
-                <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
-                <ScalarProperty Name="PlayerIdCard" ColumnName="PlayerIdCard" />
-                <ScalarProperty Name="PlayerPrize" ColumnName="PlayerPrize" />
-                <ScalarProperty Name="PlayerDeclaration" ColumnName="PlayerDeclaration" />
-                <ScalarProperty Name="PlayerVotes" ColumnName="PlayerVotes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="School">
             <EntityTypeMapping TypeName="EpeopleModel.School">
               <MappingFragment StoreEntitySet="School">
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Voter">
-            <EntityTypeMapping TypeName="EpeopleModel.Voter">
-              <MappingFragment StoreEntitySet="Voter">
-                <ScalarProperty Name="VoterId" ColumnName="VoterId" />
-                <ScalarProperty Name="VoterName" ColumnName="VoterName" />
-                <ScalarProperty Name="VoterVotes" ColumnName="VoterVotes" />
-                <ScalarProperty Name="VoterOpenId" ColumnName="VoterOpenId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -380,6 +355,31 @@
                 <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
                 <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
                 <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Player">
+            <EntityTypeMapping TypeName="EpeopleModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="PlayerVotes" ColumnName="PlayerVotes" />
+                <ScalarProperty Name="PlayerDeclaration" ColumnName="PlayerDeclaration" />
+                <ScalarProperty Name="PlayerPrize" ColumnName="PlayerPrize" />
+                <ScalarProperty Name="PlayerIdCard" ColumnName="PlayerIdCard" />
+                <ScalarProperty Name="PlayerBirthday" ColumnName="PlayerBirthday" />
+                <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voter">
+            <EntityTypeMapping TypeName="EpeopleModel.Voter">
+              <MappingFragment StoreEntitySet="Voter">
+                <ScalarProperty Name="VoterOpenId" ColumnName="VoterOpenId" />
+                <ScalarProperty Name="VoterVotes" ColumnName="VoterVotes" />
+                <ScalarProperty Name="VoterName" ColumnName="VoterName" />
+                <ScalarProperty Name="VoterId" ColumnName="VoterId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

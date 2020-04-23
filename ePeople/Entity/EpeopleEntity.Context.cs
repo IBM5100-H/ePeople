@@ -31,10 +31,10 @@ namespace Entity
         public virtual DbSet<PerformanceMX> PerformanceMX { get; set; }
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<PictureType> PictureType { get; set; }
-        public virtual DbSet<Player> Player { get; set; }
         public virtual DbSet<School> School { get; set; }
-        public virtual DbSet<Voter> Voter { get; set; }
         public virtual DbSet<VoterMX> VoterMX { get; set; }
         public virtual DbSet<V_certificate> V_certificate { get; set; }
+        public virtual DbSet<Player> Player { get; set; }
+        public virtual DbSet<Voter> Voter { get; set; }
     }
 }

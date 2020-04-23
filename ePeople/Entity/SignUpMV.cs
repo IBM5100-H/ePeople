@@ -16,6 +16,8 @@ namespace Entity
         public string PlayerIdCard { get; set; }
         public string PlayerPrize { get; set; }
         public string PlayerDeclaration { get; set; }
+        public Nullable<int> PlayerVotes { get; set; }
+
         public int ParentId { get; set; }
         public string ParentName { get; set; }
         public string ParentEmail { get; set; }

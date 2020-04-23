@@ -16,7 +16,7 @@ namespace Entity
     {
         public int VoterId { get; set; }
         public string VoterName { get; set; }
-        public string VoterVotes { get; set; }
+        public Nullable<int> VoterVotes { get; set; }
         public string VoterOpenId { get; set; }
     }
 }

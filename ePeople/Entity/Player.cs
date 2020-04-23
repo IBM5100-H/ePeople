@@ -22,6 +22,6 @@ namespace Entity
         public string PlayerIdCard { get; set; }
         public string PlayerPrize { get; set; }
         public string PlayerDeclaration { get; set; }
-        public string PlayerVotes { get; set; }
+        public Nullable<int> PlayerVotes { get; set; }
     }
 }

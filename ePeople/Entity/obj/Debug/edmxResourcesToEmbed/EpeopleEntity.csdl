@@ -52,35 +52,12 @@
     <Property Name="PictureTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Player">
-    <Key>
-      <PropertyRef Name="PlayerId" />
-    </Key>
-    <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SchoolId" Type="Int32" />
-    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PlayerSex" Type="Int32" />
-    <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
-    <Property Name="PlayerIdCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PlayerVotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="School">
     <Key>
       <PropertyRef Name="SchoolId" />
     </Key>
     <Property Name="SchoolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Voter">
-    <Key>
-      <PropertyRef Name="VoterId" />
-    </Key>
-    <Property Name="VoterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="VoterVotes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="VoterMX">
     <Key>
@@ -98,11 +75,11 @@
     <EntitySet Name="PerformanceMX" EntityType="Self.PerformanceMX" />
     <EntitySet Name="Picture" EntityType="Self.Picture" />
     <EntitySet Name="PictureType" EntityType="Self.PictureType" />
-    <EntitySet Name="Player" EntityType="Self.Player" />
     <EntitySet Name="School" EntityType="Self.School" />
-    <EntitySet Name="Voter" EntityType="Self.Voter" />
     <EntitySet Name="VoterMX" EntityType="Self.VoterMX" />
     <EntitySet Name="V_certificate" EntityType="EpeopleModel.V_certificate" />
+    <EntitySet Name="Player" EntityType="EpeopleModel.Player" />
+    <EntitySet Name="Voter" EntityType="EpeopleModel.Voter" />
   </EntityContainer>
   <EntityType Name="V_certificate">
     <Key>
@@ -118,5 +95,28 @@
     <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PerformanceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="V_ID" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerSex" Type="Int32" />
+    <Property Name="PlayerBirthday" Type="DateTime" Precision="3" />
+    <Property Name="PlayerIdCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerPrize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerDeclaration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerVotes" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Voter">
+    <Key>
+      <PropertyRef Name="VoterId" />
+    </Key>
+    <Property Name="VoterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VoterVotes" Type="Int32" />
+    <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
