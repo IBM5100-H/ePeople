@@ -108,6 +108,22 @@
     <Property Name="PerformanceName" Type="varchar" MaxLength="50" />
     <Property Name="V_ID" Type="bigint" Nullable="false" />
   </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Epeople.dbo.V_voterMxJL”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="V_voterMxJL">
+    <Key>
+      <PropertyRef Name="V_ID" />
+    </Key>
+    <Property Name="VoterMXTime" Type="datetime" />
+    <Property Name="PlayerId" Type="int" />
+    <Property Name="VoterId" Type="int" />
+    <Property Name="VoterName" Type="nvarchar" MaxLength="50" />
+    <Property Name="VoterVotes" Type="int" />
+    <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PlayerVotes" Type="int" />
+    <Property Name="PlayerSex" Type="int" />
+    <Property Name="V_ID" Type="bigint" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="EpeopleModelStoreContainer">
     <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
@@ -131,6 +147,19 @@
     [V_certificate].[PerformanceName] AS [PerformanceName], 
     [V_certificate].[V_ID] AS [V_ID]
     FROM [dbo].[V_certificate] AS [V_certificate]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_voterMxJL" EntityType="Self.V_voterMxJL" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_voterMxJL].[VoterMXTime] AS [VoterMXTime], 
+    [V_voterMxJL].[PlayerId] AS [PlayerId], 
+    [V_voterMxJL].[VoterId] AS [VoterId], 
+    [V_voterMxJL].[VoterName] AS [VoterName], 
+    [V_voterMxJL].[VoterVotes] AS [VoterVotes], 
+    [V_voterMxJL].[PlayerName] AS [PlayerName], 
+    [V_voterMxJL].[PlayerVotes] AS [PlayerVotes], 
+    [V_voterMxJL].[PlayerSex] AS [PlayerSex], 
+    [V_voterMxJL].[V_ID] AS [V_ID]
+    FROM [dbo].[V_voterMxJL] AS [V_voterMxJL]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

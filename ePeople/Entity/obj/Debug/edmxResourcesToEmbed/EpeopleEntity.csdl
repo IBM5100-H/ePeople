@@ -80,6 +80,7 @@
     <EntitySet Name="V_certificate" EntityType="EpeopleModel.V_certificate" />
     <EntitySet Name="Player" EntityType="EpeopleModel.Player" />
     <EntitySet Name="Voter" EntityType="EpeopleModel.Voter" />
+    <EntitySet Name="V_voterMxJL" EntityType="EpeopleModel.V_voterMxJL" />
   </EntityContainer>
   <EntityType Name="V_certificate">
     <Key>
@@ -118,5 +119,19 @@
     <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="VoterVotes" Type="Int32" />
     <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="V_voterMxJL">
+    <Key>
+      <PropertyRef Name="V_ID" />
+    </Key>
+    <Property Name="VoterMXTime" Type="DateTime" Precision="3" />
+    <Property Name="PlayerId" Type="Int32" />
+    <Property Name="VoterId" Type="Int32" />
+    <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VoterVotes" Type="Int32" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerVotes" Type="Int32" />
+    <Property Name="PlayerSex" Type="Int32" />
+    <Property Name="V_ID" Type="Int64" Nullable="false" />
   </EntityType>
 </Schema>

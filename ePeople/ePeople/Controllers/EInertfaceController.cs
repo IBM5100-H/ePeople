@@ -10,6 +10,8 @@ using System.Collections;
 using Newtonsoft.Json;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace ePeople.Controllers
 {
@@ -170,7 +172,7 @@ namespace ePeople.Controllers
             ht["player"] = player;
             return Json(ht, JsonRequestBehavior.AllowGet);
 
-           
+
         }
 
         //获取所有选手信息
@@ -178,18 +180,52 @@ namespace ePeople.Controllers
         {
             int Number = Convert.ToInt32(number);
             int Size = Convert.ToInt32(size);
-            var list = db.Player;
-            int total = list.Count();
-            var lists = list.OrderBy(e => e.PlayerId).Skip(Size * (Number - 1)).Take(Size);
-
-
             Hashtable ht = new Hashtable();
-            ht["pageNum"] = Number;
-            ht["pageSize"] = Size;
-            ht["size"] = Size;
-            ht["list"] = lists;
-            ht["pages"] = (total + Size - 1) / Size;
-            ht["total"] = total;
+
+
+            if (String.IsNullOrEmpty(name))
+            {
+                var list = db.Player;
+                int total = list.Count();
+                var lists = list.OrderBy(e => e.PlayerId).Skip(Size * (Number - 1)).Take(Size);               
+                ht["pageNum"] = Number;
+                ht["pageSize"] = Size;
+                ht["size"] = Size;
+                ht["list"] = lists;
+                ht["pages"] = (total + Size - 1) / Size;
+                ht["total"] = total;
+            }
+            else
+            {
+                string result = System.Text.RegularExpressions.Regex.Replace(name.Trim(), @"[^0-9]+", "");
+                string resultName= Regex.Replace(name.Trim(), @"\d", "");
+                if (!String.IsNullOrEmpty(result))
+                {
+                    int reultId = Convert.ToInt32(result);
+                    var list = db.Player.Where( e => e.PlayerId == reultId ).Where(e => e.PlayerName.Contains(resultName));
+                    int total = list.Count();
+                    var lists = list.OrderBy(e => e.PlayerId).Skip(Size * (Number - 1)).Take(Size);
+                    ht["list"] = lists;
+                    ht["pages"] = (total + Size - 1) / Size;
+                    ht["total"] = total;
+                }
+                else
+                {
+                    var list = db.Player.Where(e => e.PlayerName.Contains(name.Trim()));
+                    int total = list.Count();
+                    var lists = list.OrderBy(e => e.PlayerId).Skip(Size * (Number - 1)).Take(Size);
+                    ht["list"] = lists;
+                    ht["pages"] = (total + Size - 1) / Size;
+                    ht["total"] = total;
+                }
+               
+                ht["pageNum"] = Number;
+                ht["pageSize"] = Size;
+                ht["size"] = Size;
+
+            }
+
+        
 
             return Json(ht, JsonRequestBehavior.AllowGet);
         }
@@ -222,7 +258,7 @@ namespace ePeople.Controllers
         public ActionResult Vote()
         {
             Hashtable ht = new Hashtable();
-            string playerId = Request["playerId"];
+            int playerId = Convert.ToInt32(Request["playerId"]);
             string voterOpenId = Request["voterOpenId"];
             string voterName = Request["voterName"];
             var isNullVoter = db.Voter.Where(e => e.VoterOpenId == voterOpenId).FirstOrDefault();
@@ -231,67 +267,82 @@ namespace ePeople.Controllers
             {
                 VoterName = voterName,
                 VoterOpenId = voterOpenId,
-                VoterVotes=5
+                VoterVotes = 5
             };
+            string sqlString = @"select * from V_voterMxJL where PlayerId=@playId and VoterId=@voterId and   VoterMXTime>=DATEADD(DAY, 0, DATEDIFF(DAY, 0, GETDATE()))";
 
-            //是否已存在用户
+
+            //用户不存在
             if (isNullVoter == null)
             {
                 db.Voter.Add(voter);
                 n = db.SaveChanges();
+
                 if (n > 0)
                 {
-                    var player = db.Player.Find(Convert.ToInt32(playerId));
-                    player.PlayerVotes += 1;
-
-                    voter.VoterVotes -= 1;
-
-                    VoterMX voterMX = new VoterMX()
-                    {
-                        VoterId = voter.VoterId,
-                        PlayerId = Convert.ToInt32(playerId),
-                        VoterMXTime = FetchDBDateTime()
-
-                    };
-                    db.VoterMX.Add(voterMX);
-;
+                    VotesFinal(playerId, voter);
                     db.SaveChanges();
+                    ht["message"] = "投票成功";
+                    ht["icon"] = "success";
                 }
-
             }
+            //用户已存在
             else
             {
                 var voters = db.Voter.Where(e => e.VoterOpenId == voterOpenId).FirstOrDefault();
-                if(voters.VoterVotes>0)
-                {
-                    var player = db.Player.Find(Convert.ToInt32(playerId));
-                    player.PlayerVotes += 1;
 
-                    voters.VoterVotes -= 1;
-                    VoterMX voterMX = new VoterMX()
+                if (voters.VoterVotes > 0)
+                {
+                    SqlParameter[] sqlParameter = new SqlParameter[]
                     {
-                        VoterId = voters.VoterId,
-                        PlayerId = Convert.ToInt32(playerId),
-                        VoterMXTime = FetchDBDateTime()
+                        new SqlParameter("@playId",playerId),
+                        new SqlParameter("@voterId",voters.VoterId)
                     };
-                    db.VoterMX.Add(voterMX);
-                    db.SaveChanges();
-                    ht["message"] = "投票成功";
+                    var voterMxJL = db.Database.SqlQuery<V_voterMxJL>(sqlString, sqlParameter);
+
+                    if (voterMxJL.Count() < 2)
+                    {
+                        VotesFinal(playerId, voters);
+                        db.SaveChanges();
+                        ht["message"] = "投票成功";
+                       
+
+                    }
+                    else
+                    {
+                        ht["message"] = "超出今日此选手投票次数";
+                        
+                    }
                 }
                 else
                 {
-                    ht["message"] = "超出投票次数";
+                    ht["message"] = "超出今日投票次数";
+                    ht["icon"] = "success";
                 }
-           
-
             }
 
 
-
-
-
-           
             return Json(ht, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 投票后选手加一,投票人减一,并插入明细
+        /// </summary>
+        /// <param name="playerId">选手Id</param>
+        /// <param name="voter">新查询到的投票人</param>
+        private void VotesFinal(int playerId, Voter voter)
+        {
+            var player = db.Player.Find(playerId);
+            player.PlayerVotes += 1;
+            voter.VoterVotes -= 1;
+            VoterMX voterMX = new VoterMX()
+            {
+                VoterId = voter.VoterId,
+                PlayerId = playerId,
+                VoterMXTime = FetchDBDateTime()
+
+            };
+            db.VoterMX.Add(voterMX);
         }
 
 
@@ -310,6 +361,7 @@ namespace ePeople.Controllers
             return now.Value;
         }
         #endregion
+
 
         public ActionResult UploadAvatarUrl()
         {

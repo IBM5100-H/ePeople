@@ -100,6 +100,9 @@
     <Compile Include="V_certificate.cs">
       <DependentUpon>EpeopleEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_voterMxJL.cs">
+      <DependentUpon>EpeopleEntity.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EpeopleEntity.edmx">

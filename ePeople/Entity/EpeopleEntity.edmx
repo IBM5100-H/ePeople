@@ -113,6 +113,22 @@
           <Property Name="PerformanceName" Type="varchar" MaxLength="50" />
           <Property Name="V_ID" Type="bigint" Nullable="false" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“Epeople.dbo.V_voterMxJL”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_voterMxJL">
+          <Key>
+            <PropertyRef Name="V_ID" />
+          </Key>
+          <Property Name="VoterMXTime" Type="datetime" />
+          <Property Name="PlayerId" Type="int" />
+          <Property Name="VoterId" Type="int" />
+          <Property Name="VoterName" Type="nvarchar" MaxLength="50" />
+          <Property Name="VoterVotes" Type="int" />
+          <Property Name="PlayerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlayerVotes" Type="int" />
+          <Property Name="PlayerSex" Type="int" />
+          <Property Name="V_ID" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="EpeopleModelStoreContainer">
           <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
@@ -136,6 +152,19 @@
     [V_certificate].[PerformanceName] AS [PerformanceName], 
     [V_certificate].[V_ID] AS [V_ID]
     FROM [dbo].[V_certificate] AS [V_certificate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_voterMxJL" EntityType="Self.V_voterMxJL" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_voterMxJL].[VoterMXTime] AS [VoterMXTime], 
+    [V_voterMxJL].[PlayerId] AS [PlayerId], 
+    [V_voterMxJL].[VoterId] AS [VoterId], 
+    [V_voterMxJL].[VoterName] AS [VoterName], 
+    [V_voterMxJL].[VoterVotes] AS [VoterVotes], 
+    [V_voterMxJL].[PlayerName] AS [PlayerName], 
+    [V_voterMxJL].[PlayerVotes] AS [PlayerVotes], 
+    [V_voterMxJL].[PlayerSex] AS [PlayerSex], 
+    [V_voterMxJL].[V_ID] AS [V_ID]
+    FROM [dbo].[V_voterMxJL] AS [V_voterMxJL]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -222,6 +251,7 @@
           <EntitySet Name="V_certificate" EntityType="EpeopleModel.V_certificate" />
           <EntitySet Name="Player" EntityType="EpeopleModel.Player" />
           <EntitySet Name="Voter" EntityType="EpeopleModel.Voter" />
+          <EntitySet Name="V_voterMxJL" EntityType="EpeopleModel.V_voterMxJL" />
         </EntityContainer>
         <EntityType Name="V_certificate">
           <Key>
@@ -260,6 +290,20 @@
           <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VoterVotes" Type="Int32" />
           <Property Name="VoterOpenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_voterMxJL">
+          <Key>
+            <PropertyRef Name="V_ID" />
+          </Key>
+          <Property Name="VoterMXTime" Type="DateTime" Precision="3" />
+          <Property Name="PlayerId" Type="Int32" />
+          <Property Name="VoterId" Type="Int32" />
+          <Property Name="VoterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VoterVotes" Type="Int32" />
+          <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerVotes" Type="Int32" />
+          <Property Name="PlayerSex" Type="Int32" />
+          <Property Name="V_ID" Type="Int64" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -380,6 +424,21 @@
                 <ScalarProperty Name="VoterVotes" ColumnName="VoterVotes" />
                 <ScalarProperty Name="VoterName" ColumnName="VoterName" />
                 <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_voterMxJL">
+            <EntityTypeMapping TypeName="EpeopleModel.V_voterMxJL">
+              <MappingFragment StoreEntitySet="V_voterMxJL">
+                <ScalarProperty Name="V_ID" ColumnName="V_ID" />
+                <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
+                <ScalarProperty Name="PlayerVotes" ColumnName="PlayerVotes" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="VoterVotes" ColumnName="VoterVotes" />
+                <ScalarProperty Name="VoterName" ColumnName="VoterName" />
+                <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="VoterMXTime" ColumnName="VoterMXTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

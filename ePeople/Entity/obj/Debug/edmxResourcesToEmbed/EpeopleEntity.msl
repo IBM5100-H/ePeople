@@ -117,5 +117,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="V_voterMxJL">
+      <EntityTypeMapping TypeName="EpeopleModel.V_voterMxJL">
+        <MappingFragment StoreEntitySet="V_voterMxJL">
+          <ScalarProperty Name="V_ID" ColumnName="V_ID" />
+          <ScalarProperty Name="PlayerSex" ColumnName="PlayerSex" />
+          <ScalarProperty Name="PlayerVotes" ColumnName="PlayerVotes" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="VoterVotes" ColumnName="VoterVotes" />
+          <ScalarProperty Name="VoterName" ColumnName="VoterName" />
+          <ScalarProperty Name="VoterId" ColumnName="VoterId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="VoterMXTime" ColumnName="VoterMXTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

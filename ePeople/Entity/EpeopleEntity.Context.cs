@@ -36,5 +36,6 @@ namespace Entity
         public virtual DbSet<V_certificate> V_certificate { get; set; }
         public virtual DbSet<Player> Player { get; set; }
         public virtual DbSet<Voter> Voter { get; set; }
+        public virtual DbSet<V_voterMxJL> V_voterMxJL { get; set; }
     }
 }
